@@ -1,0 +1,31 @@
+<!-- Describe task in general -->
+
+<p>
+    You are given a string of different characters (letters, digits and other symbols). The goal is to "extract" the number from the string: concatenate only digits, number sign and "." (if present) and return the result in number format. If no number can be extracted (no digits in the given string) - return {% if is_js %}<b class="code">null</b>{% else %}<b class="code">None</b>{% endif %}. Read preconditions below for some additional rules.
+</p>
+
+<!-- Explain input and output values -->
+<p>
+    <strong>Input:</strong> String.
+</p>
+
+<p>
+    <strong>Output:</strong> {% if is_js %}Number or null{% else %}Integer, float or None{% endif %}.
+</p>
+
+
+<p>
+    <strong>Examples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>take into consideration the LAST number sign before the FIRST digit;</i></li>
+    <li><i>take into consideration the FIRST dot in the string (It's guaranteed, that it goes after at least one digit or has at least one digit after). If there is a dot, return as float, otherwise - integer.</i></li>
+    </ul>
+</p>
