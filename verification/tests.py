@@ -49,7 +49,7 @@ TESTS = {
             "answer": 48,
         },
         {
-            "input": ["^P!Njz.Tz:GxC}№I.v);y1"],
+            "input": ["^P!0Njz.Tz:GxC}№I.v);y1"],
             "answer": 0.1,
         },
         {
