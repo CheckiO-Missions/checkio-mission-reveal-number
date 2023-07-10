@@ -1,7 +1,7 @@
 <!-- Describe task in general -->
 
-<p>
-    You are given a string of different characters (letters, digits and other symbols). The goal is to "extract" the number from the string: concatenate only digits, number sign and "." (if present) and return the result in number format. If no number can be extracted (no digits in the given string) - return {% if is_js %}<b class="code">null</b>{% else %}<b class="code">None</b>{% endif %}. Read preconditions below for some additional rules.
+<p style="text-align: justify;">
+    You are given a string of different characters (letters, digits and other symbols). The goal is to "extract" the number from the string: concatenate only digits, number sign and "." (if present) and return the result in number format. If no number can be extracted (no digits in the given string) - return <b class="code"></b>{% if is_js %}null{% else %}None{% endif %}</b>. Read preconditions below for some additional rules.
 </p>
 <p>
     <strong>Expected behavior:</strong>
@@ -12,11 +12,11 @@
 </p>
 <!-- Explain input and output values -->
 <p>
-    <strong>Input:</strong> String.
+    <strong>Input:</strong> String <span translate="no">(str{% if is_js %}ing{% endif %})</span>.
 </p>
 
 <p>
-    <strong>Output:</strong> {% if is_js %}Number or null{% else %}Integer, float or None{% endif %}.
+    <strong>Output:</strong> {% if is_js %}Number or <span translate="no">null</span>{% else %}Integer <span translate="no">(int)</span>, float <span translate="no">(float)</span> or <span translate="no">None</span>{% endif %}.
 </p>
 
 

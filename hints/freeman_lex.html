@@ -1,0 +1,188 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            Catch an idea 💡! To iterate over the given string and depending from the character (sign, dot or digit) modify the resulted string.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            You need to declare variables for resulted string <b class="code">res</b>, number sing <b class="code">sign</b> and dot <b class="code">dot</b> with the following initial values of empty lines and logic <b class="code">False</b>:
+        </p>
+        <pre class="brush: python">
+res = sign = ""
+dot = False
+        </pre>
+        <p>
+            Since string may be interpreted as a sequence in Python, you can iterate over the given <b class="code">line</b> using <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for</a> loop.
+        </p>
+        <pre class="brush: python">
+for char in line:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What to do with each character inside loop?
+    </div>
+    <div class="answer">
+        <p>
+            We are interested in three cases: a <b class="code">char</b> is a number sign (+-), a dot (.) and is a digit (0-9). Use <a target="_blank" href="https://www.w3schools.com/python/gloss_python_elif.asp">if/elif</a> statement to handle the cases. 
+        </p>
+        <p>
+            Let's describe the first case. You need a character to be in <b class="code">"+-"</b> and the resulted string <b class="code">res</b> must be empty, because you take into consideration signs only before the first digit appears and be added to the resulted string. This is how it looks:
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    ...
+        </pre>
+        <p>
+            In this case you just need to update a value of <b class="code">sign</b> variable with "-" if the char is "-". If the char is "+" you may keep <b class="code">sign</b> empty since positive numbers don't need plus sign before. You may write it in the following way.
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    sign = "-"*(char == "-")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to describe the second case?
+    </div>
+    <div class="answer">
+        <p>
+            According to the description, you take into consideration only the first dot. So if your <b class="code">dot</b> equals <b class="code">False</b> and the current character is a dot, you may write the following case:
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    ...
+        </pre>
+        <p>
+            In this case you must update <b class="code">dot</b> value to <b class="code">True</b> (you don't need more dots in your resulted string) and add this dot to the resulted string. 
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    dot = True
+    res += "."
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What do to with other characters?
+    </div>
+    <div class="answer">
+        <p>
+            Otherwise check if the character is a digit with <a target="_blank" href="https://www.w3schools.com/python/ref_string_isdigit.asp">str.isdigit()</a> method. If so - add the character to the resulted string.
+        </p>
+        <pre class="brush: python">
+elif char.isdigit():
+    res += char
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to convert resulted string into proper number?
+    </div>
+    <div class="answer">
+        <p>
+            Notice, that you need a conversion only if the resulted string is not empty. Otherwise the function returns <b class="code">None</b> (what we need in case the number is not present in the given string).
+        </p>
+        <pre class="brush: python">
+if res:
+    ...
+        </pre>
+        <p>
+            The number you need consists of the sign and resulted string.
+        </p>
+        <pre class="brush: python">
+...(sign + res)
+        </pre>
+        <p>
+            Now is a tricky moment so be attentive. If the dot is in <b class="code">res</b> (<b class="code">dot</b> equals <b class="code">True</b>) you need to convert this number into float with built-in <a target="_blank" href="https://www.w3schools.com/python/ref_func_float.asp">float()</a> function. Otherwise (no dot) - convert into integer with built-in <a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a> function. 
+        </p>
+        <p>
+            Since logic values may be interpreted as integers (0 for <b class="code">False</b>, 1 for <b class="code">True</b>), you may use <b class="code">dot</b> value as index of  tuple with two functions and concatenate with above expression in parenthesis as argument.
+        </p>
+        <pre class="brush: python">
+return (int, float)[dot](sign + res)
+        </pre>
+        <p>
+            Notice, the you refer to functions inside the first parenthesis, not call them, so there are no parenthesis near each function.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all previous hints and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def reveal_num(line: str) -> int | float | None:
+
+    res = sign = ""
+    dot = False
+    for char in line:
+        if char in "+-" and not res:
+            sign = "-"*(char == "-")
+        elif char == "." and not dot:
+            dot = True
+            res += "."
+        elif char.isdigit():
+            res += char
+    if res:
+        return (int, float)[dot](sign + res)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            Using regular expression module found the last sign before the first digit, split the given string between dots and built a final expression.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from re import sub
+
+
+def reveal_num(line: str) -> int | float | None:
+
+    sign = sub(r'\D*(\+|-).*', r'\1', '+' + line)
+    p1, *p2 = sub(r'[^0-9.]', r'', line).split('.')
+
+    return eval(f'{sign}{p1}.{"".join(p2)}') if p1 or p2 else None
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it 👍!
+    </div>
+</div>
+</body>
