@@ -1,0 +1,188 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Attrapez une idée 💡! Itérer sur la chaîne donnée et, en fonction du caractère (signe, point ou chiffre), modifier la chaîne obtenue.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez déclarer des variables pour les résultats suivants: chaîne <b class="code">res</b>, nombre sing <b class="code">sign</b> et point <b class="code">dot</b> avec les valeurs initiales suivantes: lignes vides et logique <b class="code">False</b>:
+        </p>
+        <pre class="brush: python">
+res = sign = ""
+dot = False
+        </pre>
+        <p>
+            Comme une chaîne peut être interprétée comme une séquence en Python, vous pouvez itérer sur la chaîne donnée <b class="code">line</b> à l'aide de la boucle <a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for</a>.
+        </p>
+        <pre class="brush: python">
+for char in line:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire de chaque caractère à l'intérieur de la boucle?
+    </div>
+    <div class="answer">
+        <p>
+            Nous nous intéressons à trois cas: un <b class="code">char</b> est un signe numérique (+-), un point (.) et un chiffre (0-9). Utilisez l'instruction <a target="_blank" href="https://www.w3schools.com/python/gloss_python_elif.asp">if/elif</a> pour traiter ces cas. 
+        </p>
+        <p>
+            Décrivons le premier cas. Vous avez besoin d'un caractère dans <b class="code">"+-"</b> et la chaîne résultante <b class="code">res</b> doit être vide, car vous ne prenez en compte les signes qu'avant l'apparition du premier chiffre et leur ajout à la chaîne résultante. Voici à quoi cela ressemble:
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    ...
+        </pre>
+        <p>
+            Dans ce cas, il vous suffit de mettre à jour une valeur de la variable <b class="code">sign</b> avec "-" si le caractère est "-". Si le caractère est "+", vous pouvez laisser <b class="code">sign</b> vide puisque les nombres positifs n'ont pas besoin du signe plus avant. Vous pouvez l'écrire de la manière suivante.
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    sign = "-"*(char == "-")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment décrire le deuxième cas?
+    </div>
+    <div class="answer">
+        <p>
+            D'après la description, vous ne prenez en considération que le premier point. Ainsi, si votre <b class="code">dot</b> est égal à <b class="code">False</b> et que le caractère courant est un point, vous pouvez écrire le cas suivant:
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    ...
+        </pre>
+        <p>
+            Dans ce cas, vous devez mettre à jour la valeur de <b class="code">dot</b> en <b class="code">True</b> (vous n'avez pas besoin de points supplémentaires dans votre chaîne résultante) et ajouter ce point à la chaîne résultante. 
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    dot = True
+    res += "."
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire avec les autres caractères?
+    </div>
+    <div class="answer">
+        <p>
+            Sinon, vérifiez si le caractère est un chiffre avec la méthode <a target="_blank" href="https://www.w3schools.com/python/ref_string_isdigit.asp">str.isdigit()</a>. Si c'est le cas, ajoutez le caractère à la chaîne obtenue.
+        </p>
+        <pre class="brush: python">
+elif char.isdigit():
+    res += char
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment convertir la chaîne de caractères obtenue en un nombre approprié?
+    </div>
+    <div class="answer">
+        <p>
+            Notez que vous n'avez besoin d'une conversion que si la chaîne obtenue n'est pas vide. Dans le cas contraire, la fonction renvoie <b class="code">None</b> (ce dont nous avons besoin si le nombre n'est pas présent dans la chaîne donnée).
+        </p>
+        <pre class="brush: python">
+if res:
+    ...
+        </pre>
+        <p>
+            Le nombre dont vous avez besoin se compose du signe et de la chaîne résultante.
+        </p>
+        <pre class="brush: python">
+...(sign + res)
+        </pre>
+        <p>
+            C'est un moment délicat, soyez donc attentif. Si le point se trouve dans <b class="code">res</b> (<b class="code">dot</b> est égal à <b class="code">True</b>), vous devez convertir ce nombre en flottant à l'aide de la fonction intégrée <a target="_blank" href="https://www.w3schools.com/python/ref_func_float.asp">float()</a>. Sinon (pas de point) - convertissez ce nombre en entier avec la fonction intégrée <a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a>. 
+        </p>
+        <p>
+            Comme les valeurs logiques peuvent être interprétées comme des entiers (0 pour <b class="code">False</b>, 1 pour <b class="code">True</b>), vous pouvez utiliser la valeur <b class="code">dot</b> comme index d'un tuple avec deux fonctions et la concaténer avec l'expression ci-dessus entre parenthèses comme argument.
+        </p>
+        <pre class="brush: python">
+return (int, float)[dot](sign + res)
+        </pre>
+        <p>
+            Notez que vous faites référence aux fonctions à l'intérieur de la première parenthèse, sans les appeler, et qu'il n'y a donc pas de parenthèses à proximité de chaque fonction.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de combiner tous les indices précédents et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def reveal_num(line: str) -> int | float | None:
+
+    res = sign = ""
+    dot = False
+    for char in line:
+        if char in "+-" and not res:
+            sign = "-"*(char == "-")
+        elif char == "." and not dot:
+            dot = True
+            res += "."
+        elif char.isdigit():
+            res += char
+    if res:
+        return (int, float)[dot](sign + res)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être une vraie 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            En utilisant le module d'expression régulière a trouvé le dernier signe avant le premier chiffre, divisé la chaîne donnée entre les points et construit une expression finale.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from re import sub
+
+
+def reveal_num(line: str) -> int | float | None:
+
+    sign = sub(r'\D*(\+|-).*', r'\1', '+' + line)
+    p1, *p2 = sub(r'[^0-9.]', r'', line).split('.')
+
+    return eval(f'{sign}{p1}.{"".join(p2)}') if p1 or p2 else None
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>
