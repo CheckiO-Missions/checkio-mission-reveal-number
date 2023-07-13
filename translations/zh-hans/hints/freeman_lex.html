@@ -1,0 +1,188 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这项任务。
+    </div>
+    <div class="answer">
+        <p>
+            给你个建议💡！迭代给定的字符串，并根据字符（符号、点或数字）修改结果字符串。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从什么开始呢？
+    </div>
+    <div class="answer">
+        <p>
+            您需要为结果字符串<b class="code">res</b> ，数字单<b class="code">sign</b> 和点<b class="code">dot</b> 声明变量，初始值为空行和逻辑<b class="code">False</b> ：
+        </p>
+        <pre class="brush: python">
+res = sign = ""
+dot = False
+        </pre>
+        <p>
+            由于字符串在 Python 中可以被解释为一个序列，您可以使用<a target="_blank" href="https://www.w3schools.com/python/python_for_loops.asp">for</a> loop 遍历给定的<b class="code">line</b> 。
+        </p>
+        <pre class="brush: python">
+for char in line:
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何处理循环中的每个字符？
+    </div>
+    <div class="answer">
+        <p>
+            我们对三种情况感兴趣：<b class="code">char</b> 是数字符号 (+-)、点 (.) 和数字 (0-9)。使用<a target="_blank" href="https://www.w3schools.com/python/gloss_python_elif.asp">if/elif</a> 语句处理这些情况。 
+        </p>
+        <p>
+            让我们描述第一种情况。您需要在<b class="code">"+-"</b> 中包含一个字符，并且结果字符串<b class="code">res</b> 必须为空，因为您只考虑了第一个数字出现之前的符号，并将其添加到结果字符串中。结果是这样的
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    ...
+        </pre>
+        <p>
+            在这种情况下，如果字符为"-"，您只需要用"-"更新<b class="code">sign</b> 变量的值。如果字符是 "+"，您可以将<b class="code">sign</b> 保持为空，因为正数前面不需要加号。写法如下
+        </p>
+        <pre class="brush: python">
+if char in "+-" and not res:
+    sign = "-"*(char == "-")
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何描述第二种情况？
+    </div>
+    <div class="answer">
+        <p>
+            根据描述，您只考虑第一个点。因此，如果您的<b class="code">dot</b> 等于<b class="code">False</b> 且当前字符是点，您可以写出以下情况：
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    ...
+        </pre>
+        <p>
+            在这种情况下，您必须将<b class="code">dot</b> 的值更新为<b class="code">True</b> （在结果字符串中您不需要更多的点了），并将这个点添加到结果字符串中。 
+        </p>
+        <pre class="brush: python">
+elif char == "." and not dot:
+    dot = True
+    res += "."
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何处理其他字符？
+    </div>
+    <div class="answer">
+        <p>
+            否则使用<a target="_blank" href="https://www.w3schools.com/python/ref_string_isdigit.asp">str.isdigit()</a> 方法检查字符是否为数字。如果是，则将字符添加到结果字符串中。
+        </p>
+        <pre class="brush: python">
+elif char.isdigit():
+    res += char
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何将结果字符串转换成正确的数字？
+    </div>
+    <div class="answer">
+        <p>
+            注意，只有当结果字符串不为空时才需要转换。否则函数返回<b class="code">None</b> （如果给定的字符串中不存在数字，我们需要转换）。
+        </p>
+        <pre class="brush: python">
+if res:
+    ...
+        </pre>
+        <p>
+            您需要的数字由符号和结果字符串组成。
+        </p>
+        <pre class="brush: python">
+...(sign + res)
+        </pre>
+        <p>
+            现在是一个棘手的时刻，所以请注意。如果点在<b class="code">res</b> (<b class="code">dot</b> 等于<b class="code">True</b>)，您需要使用内置的<a target="_blank" href="https://www.w3schools.com/python/ref_func_float.asp">float()</a> 函数将该数字转换为浮点数。否则（没有点）--使用内置的<a target="_blank" href="https://www.w3schools.com/python/ref_func_int.asp">int()</a> 函数转换为整数。 
+        </p>
+        <p>
+            由于逻辑值可以解释为整数（0 表示<b class="code">False</b> ，1 表示<b class="code">True</b> ），您可以使用<b class="code">dot</b> 值作为两个函数的元组索引，并与上述括号中的表达式作为参数进行连接。
+        </p>
+        <pre class="brush: python">
+return (int, float)[dot](sign + res)
+        </pre>
+        <p>
+            请注意，您是在第一个括号内引用函数，而不是调用它们，因此每个函数附近都没有括号。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前所有的提示连接起来，并将代码封装为函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>以下是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def reveal_num(line: str) -> int | float | None:
+
+    res = sign = ""
+    dot = False
+    for char in line:
+        if char in "+-" and not res:
+            sign = "-"*(char == "-")
+        elif char == "." and not dot:
+            dot = True
+            res += "."
+        elif char.isdigit():
+            res += char
+    if res:
+        return (int, float)[dot](sign + res)
+        </pre>
+        </div>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        告诉我更多解决方案！<br />
+        因为我想成为一个真正的 🥇 Python Ninnjaa！
+    </div>
+    <div class="answer">
+        <p>当然，抓住它！</p>
+        <p>
+            使用正则表达式模块找到第一个数字前的最后一个符号，在点之间分割给定字符串，并建立最终表达式。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+from re import sub
+
+
+def reveal_num(line: str) -> int | float | None:
+
+    sign = sub(r'\D*(\+|-).*', r'\1', '+' + line)
+    p1, *p2 = sub(r'[^0-9.]', r'', line).split('.')
+
+    return eval(f'{sign}{p1}.{"".join(p2)}') if p1 or p2 else None
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息👍！
+    </div>
+</div>
+</body>
