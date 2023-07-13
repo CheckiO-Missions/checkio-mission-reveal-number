@@ -1,0 +1,27 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Otrzymują Państwo ciąg różnych znaków (liter, cyfr i innych symboli). Celem jest "wyodrębnienie" liczby z ciągu: proszę połączyć tylko cyfry, znak liczby i "." (jeśli występuje) i zwrócić wynik w formacie liczbowym. Jeśli nie można wyodrębnić liczby (brak cyfr w podanym ciągu) - proszę zwrócić <b class="code"></b>{% if is_js %} null{% else %}None{% endif %}</b> . Proszę zapoznać się z poniższymi warunkami wstępnymi, aby poznać dodatkowe zasady.
+</p>
+<p>
+    <strong>Oczekiwane zachowanie:</strong>
+    <ul>
+    <li><i>proszę wziąć pod uwagę OSTATNI znak liczby przed PIERWSZĄ cyfrą;</i></li>
+    <li><i>proszę wziąć pod uwagę PIERWSZĄ kropkę w ciągu (gwarantowane jest, że występuje ona po co najmniej jednej cyfrze lub ma co najmniej jedną cyfrę po niej). Jeśli jest kropka, proszę zwrócić liczbę zmiennoprzecinkową, w przeciwnym razie - liczbę całkowitą.</i></li>
+    </ul>
+</p>
+<!-- Explain input and output values -->
+<p>
+   <strong>Dane wejściowe:</strong> String <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Wyjście:</strong> {% if is_js %}Number lub <span>null</span>{% else %} Integer <span>(int)</span>, float lub <span>None</span>{% endif %}.
+</p>
+
+
+<p>
+    <strong>Przykłady:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
