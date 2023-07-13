@@ -1,0 +1,27 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    您将得到一个由不同字符（字母、数字和其他符号）组成的字符串。目标是从字符串中 "提取 "数字：只连接数字、数字符号和"."（如果存在），并以数字格式返回结果。如果无法提取数字（给定字符串中没有数字）--返回<b class="code"></b>{% if is_js %} null{% else %}无{% endif %}</b> 。请阅读下面的先决条件以了解更多规则。
+</p>
+<p>
+    <strong>预期行为：</strong>
+    <ul>
+    <li><i>考虑第一个数字前的最后一个数字符号；</i></li>
+    <li><i>考虑字符串中的第一个点（保证它在至少一个数字之后或至少一个数字之后）。如果有圆点，返回浮点数，否则返回整数。</i></li>
+    </ul>
+</p>
+<!-- Explain input and output values -->
+<p>
+   <strong>输入</strong>字符串 <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>输出：</strong> {% if is_js %}Number or<span>null</span>{% else %} Integer<span>(int)</span>, float<span>(float)</span> or<span>None</span>{% endif %}.
+</p>
+
+
+<p>
+    <strong>示例：</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
