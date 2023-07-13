@@ -1,0 +1,27 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Vous disposez d'une chaîne de caractères différents (lettres, chiffres et autres symboles). L'objectif est d'"extraire" le nombre de la chaîne: concaténer uniquement les chiffres, le signe numérique et "." (le cas échéant) et renvoyer le résultat sous forme de nombre. Si aucun nombre ne peut être extrait (aucun chiffre dans la chaîne donnée) - retournez <b class="code"></b>{% if is_js %} null{% else %}None{% endif %}</b> . Lisez les conditions préalables ci-dessous pour connaître les règles supplémentaires.
+</p>
+<p>
+    <strong>Comportement attendu:</strong>
+    <ul>
+    <li><i>prendre en considération le DERNIER signe numérique avant le PREMIER chiffre;</i></li>
+    <li><i>prendre en considération le PREMIER point de la chaîne (il est garanti qu'il suit au moins un chiffre ou qu'il a au moins un chiffre après). S'il y a un point, renvoyez-le sous forme de float, sinon sous forme d'integer.</i></li>
+    </ul>
+</p>
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Chaîne <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> {% if is_js %}Nombre ou <span>null</span>{% else %} Integer <span>(int)</span>, float ou <span>None</span>{% endif %}.
+</p>
+
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
