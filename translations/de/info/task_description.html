@@ -1,0 +1,27 @@
+<!-- Describe task in general -->
+
+<p style="text-align: justify;">
+    Sie erhalten eine Zeichenkette mit verschiedenen Zeichen (Buchstaben, Ziffern und andere Symbole). Das Ziel ist es, die Zahl aus der Zeichenkette zu "extrahieren": Verketten Sie nur die Ziffern, das Zahlenzeichen und "." (falls vorhanden) und geben Sie das Ergebnis im Zahlenformat zurück. Wenn keine Zahl extrahiert werden kann (keine Ziffern in der angegebenen Zeichenkette) - geben Sie <b class="code"></b>{% if is_js %} null{% else %}Keine{% endif %}</b> zurück. Lesen Sie die Vorbedingungen unten für einige zusätzliche Regeln.
+</p>
+<p>
+    <strong>Erwartetes Verhalten:</strong>
+    <ul>
+    <li><i>berücksichtige das LETZTE Zahlenzeichen vor der ERSTEN Ziffer;</i></li>
+    <li><i>berücksichtigen Sie den ERSTEN Punkt in der Zeichenkette (es ist garantiert, dass er nach mindestens einer Ziffer kommt oder mindestens eine Ziffer nach sich hat). Wenn ein Punkt vorhanden ist, wird als Float zurückgegeben, andernfalls - Integer.</i></li>
+    </ul>
+</p>
+<!-- Explain input and output values -->
+<p>
+   <strong>Eingabe:</strong> Zeichenkette <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Ausgabe:</strong> {% if is_js %}Zahl oder <span>null</span>{% else %} Integer <span>(int)</span>, float oder <span>None</span>{% endif %}.
+</p>
+
+
+<p>
+    <strong>Beispiele:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
